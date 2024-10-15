@@ -1,0 +1,23 @@
+# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+# docker run -d -p 3000:8080 -e WEBUI_AUTH=False -e OLLAMA_BASE_URL=http://localhost:11434 -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+services:
+  ollama:
+    image: ollama/ollama
+    
+    volumes:
+      - "ollama:/root/.ollama"
+    
+    ports:
+      - "11434:11434"
+  
+  open-webui:
+    image: dyrnq/open-webui
+    environment:
+      - WEBUI_AUTH=False
+      - OLLAMA_BASE_URL=ollama:11434
+    
+    volumes:
+      - "open-webui:/app/backend/data"
+    
+    ports:
+      - "8080:8080"

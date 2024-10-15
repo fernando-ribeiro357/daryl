@@ -3,10 +3,11 @@ resposta=""
 
 if [ $# -gt 0 ]
 then
-
     filename="/tmp/.resposta_`date +%s`"
-    curl -s http://localhost:11434/api/generate -d "{\"model\":\"phi3\",\"stream\":false,\"prompt\":\"${1}\"}" | jq .response > $filename
-
+    curl -s http://localhost:11434/api/generate -d "{\"model\":\"llama3.1\",\"stream\":false,\"prompt\":\"${1}\"}" | jq .response > $filename
+    
+    printf %b "$1" | piper -m ~/opt/piper/pt_BR/pt_BR-faber-medium.onnx --output-raw | aplay -r 20050 -f s16_le -t raw -
+    
     resposta="$(cat $filename | sed 's/\*//g')"
 else
   resposta="Olá, meu nome é Dariu. Como posso te ajudar?"
