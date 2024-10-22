@@ -39,24 +39,9 @@ async def chat(prompt):
 
 
 def main():
-    ''' 
+    '''
     Função principal que inicia o programa 
     '''
-
-    message = {'role': 'user', 'content': prompt}
-    try:
-        async for part in await AsyncClient().chat(model='gemma2', messages=[message], stream=True):
-            saida = retira_aster(part['message']['content'])
-            print(saida, end='', flush=True)
-    except ResponseError as e:
-        print('Error:', e.error)
-
-
-def main():
-    ''' 
-    Função principal que inicia o programa 
-    '''
-
     os.system('clear')
     responder_prompt()
 
