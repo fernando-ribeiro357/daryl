@@ -18,8 +18,10 @@ ou
 Baixe o arquivo tar.gz para a plataforma do seu computador
 - https://github.com/rhasspy/piper/releases/tag/2023.11.14-2
 
-`$ tar -xvzf piper_arm64.tar.gz ~/opt/`
+Extraindo arquivos
+`$ tar -xvzf piper_arm64.tar.gz --directory ~/opt/`
 
+Criação do link simbólico para o executável no diretório bin do usuário
 `$ ln -s ~/opt/piper/piper ~/bin/piper`
 
 ### Baixe a voz em português
